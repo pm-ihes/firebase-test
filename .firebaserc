@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-test-bc9b9": {
+      "hosting": {
+        "firebase-test": [
+          "fir-test-bc9b9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-test-bc9b9"
+  }
+}
