@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private fireauth: AngularFireAuth, private router: Router) { }
+  constructor(private fireauth: AngularFireAuth, private db: AngularFirestore, private router: Router) { }
 
   //login method
   login(email: string, password: string) {
@@ -21,14 +25,20 @@ export class AuthService {
   }
 
   //register method
-  register(email: string, password: string) {
-    this.fireauth.createUserWithEmailAndPassword(email, password).then( () => {
+  register(firstname: string, lastname: string, email: string, password: string) {
+    this.fireauth.createUserWithEmailAndPassword(email, password).then(cred => {
+      return this.db.collection('users').doc(cred.user?.uid).set({
+        firstname: firstname,
+        lastname: lastname,
+        email: email
+      })
+    }).then( () => {
       alert('Registration succesful');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']); 
     }, err => {
       alert(err.message);
       this.router.navigate(['register']);
-    })
+    });
   }
 
   //sign-out method

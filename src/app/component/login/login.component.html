@@ -1,15 +1,55 @@
-<div class="container mx-auto my-20 border-black border max-w-2xl max-h-full flex justify-center">
-    <div class="col-auto">
-        <form action="">
-            <h2 class="text-center font-medium pb-8 text-2xl">Anmeldung</h2>
-            <div class="flex flex-col bg-white border-b-slate-800 border-solid border-b">
-                <label for="email" class=" text-xs">Email:</label>
-                <input type="email" id="email" class="w-56 border-b-slate-800">
-            </div>
-        </form>
-        
-
-        
+<div class="m-auto p-10">
+    <div class="max-w-lg m-auto flex justify-center align-middle">
+        <img src="../assets/images/IHES_Logo.svg" alt="Logo IHES" class="w-20 h-auto">
+        <p class="my-auto text-4xl font-semibold px-3">Schadenportal</p>
     </div>
+
+    <div class="mt-14">
+      <form class="example-form min-w-[150px] max-w-[500px] w-full m-auto h-full p-4 block" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="flex justify-center">
+          <mat-form-field class="example-full-width w-80 m-auto mb-3">
+            <mat-icon matIconPrefix>person</mat-icon>
+            <mat-label class="">Email</mat-label>
+            <input class="text-[var(--secondary-color)]" type="email" matInput formControlName="email" [(ngModel)]="email">
+            <mat-error *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')">
+              Bitte geben Sie eine gültige Email ein!
+            </mat-error>
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+              Email wird benötigt!
+            </mat-error>
+          </mat-form-field>
+        </div>
+       
+        <div class="flex justify-center">
+          <mat-form-field class="example-full-width w-80 m-auto mb-3"> 
+            <mat-icon matIconPrefix>password</mat-icon>
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Bitte geben Sie ein Password ein!
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="block">
+          <div class="flex justify-center">
+            <button type="submit" [attr.disabled]="loginForm.valid ? null : true"
+            class="bg-[var(--secondary-color)] text-white p-2 w-80 m-auto ease-in duration-300 hover:valid:tracking-[.25em] disabled:bg-slate-500">Anmelden</button>
+          </div>
+          <div class="flex justify-center my-4 hover:underline">
+            <a href="">Passwort vergessen?</a>
+          </div>
+          <div class="flex justify-center mb-4 hover:underline">
+            <a routerLink="../register">Noch keinen Zugang? Registrieren Sie sich hier!</a>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+
 
 </div>

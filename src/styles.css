@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root{
     --primary-color: #d7d900;
@@ -21,3 +22,5 @@ body{
     max-width: 100%;
     overflow-x: hidden;
 }
+html, body { height: 100%; }
+body { margin: 0 }
