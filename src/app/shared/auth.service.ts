@@ -15,9 +15,14 @@ export class AuthService {
 
   //login method
   login(email: string, password: string) {
-    this.fireauth.signInWithEmailAndPassword(email, password).then( () => {
+    this.fireauth.signInWithEmailAndPassword(email, password).then( cred => {
       localStorage.setItem('token', 'true');
-      this.router.navigate(['dashboard']);
+
+      if(cred.user?.emailVerified){
+        this.router.navigate(['dashboard']);
+      } else {
+        this.router.navigate(['verify-email']);
+      }
     }, err => {
       alert(err.message);
       this.router.navigate(['login']);
@@ -27,14 +32,12 @@ export class AuthService {
   //register method
   register(firstname: string, lastname: string, email: string, password: string) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(cred => {
+      this.sendEmailForVerification(cred.user);
       return this.db.collection('users').doc(cred.user?.uid).set({
         firstname: firstname,
         lastname: lastname,
         email: email
       })
-    }).then( () => {
-      alert('Registration succesful');
-      this.router.navigate(['/login']); 
     }, err => {
       alert(err.message);
       this.router.navigate(['register']);
@@ -48,6 +51,15 @@ export class AuthService {
       this.router.navigate(['login']);
     }, err => {
       alert(err.message);
+    })
+  }
+
+  //email verification
+  sendEmailForVerification(user: any){
+    user.sendEmailVerification().then((res : any) => {
+      this.router.navigate(['verify-email'])
+    }, (err: any) => {
+      alert('Somethin went wront. Not able to send mail');
     })
   }
 

@@ -1,11 +1,15 @@
-<div class="m-auto p-10">
-    <div class="max-w-lg m-auto flex justify-center align-middle">
-        <img src="../assets/images/IHES_Logo.svg" alt="Logo IHES" class="w-20 h-auto">
-        <p class="my-auto text-4xl font-semibold px-3">Schadenportal</p>
+<div class="h-full m-auto block items-center justify-center p-10
+          sm:flex">
+
+    <div class="flex justify-center items-center
+                sm:w-[40%]">
+        <app-header-logo></app-header-logo>
     </div>
 
-    <div class="mt-14">
-      <form class="example-form min-w-[150px] max-w-[500px] w-full m-auto h-full p-4 block" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="pt-10
+            sm:w-[40%] sm:px-10">
+      <form class="min-w-[150px] max-w-[500px] w-full m-auto h-full p-4 block" [formGroup]="loginForm" (ngSubmit)="login()">
+
         <div class="flex justify-center">
           <mat-form-field class="example-full-width w-80 m-auto mb-3">
             <mat-icon matIconPrefix>person</mat-icon>
@@ -22,8 +26,8 @@
        
         <div class="flex justify-center">
           <mat-form-field class="example-full-width w-80 m-auto mb-3"> 
-            <mat-icon matIconPrefix>password</mat-icon>
-            <mat-label>Enter your password</mat-label>
+            <mat-icon matIconPrefix>key</mat-icon>
+            <mat-label>Passwort</mat-label>
             <input matInput formControlName="password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

@@ -1,16 +1,15 @@
 <div class="h-full m-auto block items-center justify-center p-10
             sm:flex">
-    <div class="max-w-sm m-auto justify-center pb-10 align-middle
-                sm:block flex sm:pb-40 ">
-        <img src="../assets/images/IHES_Logo.svg" alt="Logo IHES" class="mx-auto w-20 h-auto
-                                                                            sm:w-60">
-        <p class="mt-4 text-3xl font-semibold px-3
-                    sm:text-5xl">Schadenportal</p>
+    
+    <div class="flex justify-center items-center
+                sm:w-[40%]">
+        <app-header-logo></app-header-logo>
     </div>
-
-    <div class="pt-10 sm:pr-60">
+    
+    <div class="pt-10 
+                sm:w-[40%] sm:px-10">
         <!--<p class="text-2xl font-medium py-4">Registrierung</p>-->
-        <form class="example-form min-w-[150px] max-w-[500px] w-full m-auto h-full block" [formGroup]="registerForm" (ngSubmit)="register()">
+        <form class="min-w-[150px] max-w-[500px] w-full m-auto h-full block" [formGroup]="registerForm" (ngSubmit)="register()">
 
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3">
@@ -25,7 +24,7 @@
         
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3">
-                    <mat-icon matIconPrefix>person</mat-icon>
+                    <mat-icon matIconPrefix>group</mat-icon>
                     <mat-label class="">Nachname</mat-label>
                     <input class="text-[var(--secondary-color)]" type="text" matInput formControlName="lastname" [(ngModel)]="lastname">
                     <mat-error *ngIf="registerForm.controls['lastname'].hasError('required')">
@@ -36,7 +35,7 @@
 
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3">
-                    <mat-icon matIconPrefix>person</mat-icon>
+                    <mat-icon matIconPrefix>mail</mat-icon>
                     <mat-label class="">Email</mat-label>
                     <input class="text-[var(--secondary-color)]" type="text" matInput formControlName="email" [(ngModel)]="email">
                     <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
@@ -47,8 +46,8 @@
 
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3"> 
-                    <mat-icon matIconPrefix>password</mat-icon>
-                    <mat-label>Enter your password</mat-label>
+                    <mat-icon matIconPrefix>key</mat-icon>
+                    <mat-label>Passwort</mat-label>
                     <input matInput formControlName="password" [(ngModel)]="password" [type]="hide1 ? 'password' : 'text'">
                     <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
                         <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -61,8 +60,8 @@
             
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3"> 
-                    <mat-icon matIconPrefix>password</mat-icon>
-                    <mat-label>Wiederholen Sie ihr Passwort</mat-label>
+                    <mat-icon matIconPrefix>key</mat-icon>
+                    <mat-label>Passwort bestätigen</mat-label>
                     <input matInput formControlName="confirmPassword" [(ngModel)]="confirmPassword" [type]="hide2 ? 'password' : 'text'" [errorStateMatcher]="matcher">
                     <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
                         <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
