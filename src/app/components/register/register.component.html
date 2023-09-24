@@ -20,8 +20,8 @@
                 <mat-form-field class="example-full-width w-80 m-auto mb-3">
                     <mat-icon matIconPrefix>person</mat-icon>
                     <mat-label class="">Vorname</mat-label>
-                    <input class="text-[var(--secondary-color)]" type="email" matInput formControlName="firstname" [(ngModel)]="firstname">
-                    <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                    <input class="text-[var(--secondary-color)]" type="text" matInput formControlName="firstname" [(ngModel)]="firstname">
+                    <mat-error *ngIf="registerForm.controls['firstname'].hasError('required')">
                         Vorname wird benötigt!
                     </mat-error>
                 </mat-form-field>

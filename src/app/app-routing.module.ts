@@ -7,6 +7,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { outerauthGuard } from './shared/guard/outerauth.guard';
+import { CreateCaseComponent } from './components/create-case/create-case.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'loading',
     component: LoadingIndicatorComponent
+  },
+  {
+    path: 'create_case',
+    component: CreateCaseComponent,
+    canActivate: [authGuard]
   }
 
 ];

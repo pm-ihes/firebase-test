@@ -30,6 +30,7 @@ import { InnerHeaderComponent } from './components/inner-header/inner-header.com
 import { DashboardElementComponent } from './components/dashboard/dashboard-element/dashboard-element.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { ToastrModule } from 'ngx-toastr';
+import { CreateCaseComponent } from './components/create-case/create-case.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ToastrModule } from 'ngx-toastr';
     FooterInformationComponent,
     LoadingIndicatorComponent,
     InnerHeaderComponent,
-    DashboardElementComponent
+    DashboardElementComponent,
+    CreateCaseComponent
   ],
   imports: [
     BrowserModule,
