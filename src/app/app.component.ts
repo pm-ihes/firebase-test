@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'firebase-test';
 
   @HostListener('window:beforeunload', ['$event'])
-  unloadHandler(evet: Event): void {
+  unloadHandler(event: Event): void {
     localStorage.clear();
   }
 }
