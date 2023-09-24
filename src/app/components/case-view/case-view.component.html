@@ -1,0 +1,20 @@
+<app-inner-header></app-inner-header>
+
+<div class="max-w-sm m-auto block justify-center">
+    <p class="text-center te">Angelegte Fälle:</p>
+    <div class="flex justify-center">
+        <a routerLink="../dashboard">
+            <span class="material-symbols-outlined text-3xl">
+            keyboard_backspace
+            </span>
+        </a>   
+    </div>
+</div>
+
+<div class="max-w-xl m-auto">
+    <mat-divider></mat-divider>
+
+    <app-case-view-element *ngFor="let case for cases"></app-case-view-element>
+
+    <mat-divider></mat-divider>
+</div>

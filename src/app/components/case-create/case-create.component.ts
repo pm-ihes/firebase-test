@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CaseService } from 'src/app/shared/services/case/case.service';
 
 @Component({
-  selector: 'app-create-case',
-  templateUrl: './create-case.component.html',
-  styleUrls: ['./create-case.component.css']
+  selector: 'app-case-create',
+  templateUrl: './case-create.component.html',
+  styleUrls: ['./case-create.component.css']
 })
-export class CreateCaseComponent implements OnInit{
+export class CaseCreateComponent implements OnInit{
 
   caseForm!: FormGroup;
 
@@ -15,7 +17,7 @@ export class CreateCaseComponent implements OnInit{
   email: string = '';
   kzn: string = '';
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private caseService: CaseService) {}
 
   ngOnInit (): void {
 
@@ -33,7 +35,12 @@ export class CreateCaseComponent implements OnInit{
   }
 
   createCase () {
-
+    this.router.navigate(['loading']);
+    this.caseService.createCase(this.firstname, this.lastname, this.email, this.kzn);
+    this.firstname = '';
+    this.lastname = '';
+    this.email = '';
+    this.kzn = '';
   }
 
 }

@@ -7,7 +7,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { outerauthGuard } from './shared/guard/outerauth.guard';
-import { CreateCaseComponent } from './components/create-case/create-case.component';
+import { CaseCreateComponent } from './components/case-create/case-create.component';
+import { CaseViewComponent } from './components/case-view/case-view.component';
 
 const routes: Routes = [
   {
@@ -40,8 +41,13 @@ const routes: Routes = [
     component: LoadingIndicatorComponent
   },
   {
-    path: 'create_case',
-    component: CreateCaseComponent,
+    path: 'case_create',
+    component: CaseCreateComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'case_view',
+    component: CaseViewComponent,
     canActivate: [authGuard]
   }
 
