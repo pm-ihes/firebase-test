@@ -18,7 +18,7 @@
         <app-loading-indicator></app-loading-indicator>
     </div>
     <div *ngIf="loaded">
-        <app-case-view-element *ngFor="let case of cases"></app-case-view-element>
+        <app-case-view-element *ngFor="let case of cases" [id]="case.id" [kzn]="case.kzn"></app-case-view-element>
     </div>
     
 

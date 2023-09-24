@@ -36,7 +36,7 @@ export class CaseService {
 
   getCases () {
     return new Promise<any>((resolve) => {
-      this.db.collection('makler_case').valueChanges({ idField: 'id'}).subscribe(users => resolve(users));
+      this.db.collection('makler_case').valueChanges({ idField: 'id'}).subscribe(cases => resolve(cases));
     })
     /*this.case.subscribe(data => {
       this.cases.push(data);

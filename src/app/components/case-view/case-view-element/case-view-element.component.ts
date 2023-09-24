@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 export class CaseViewElementComponent {
 
   @Input()
-  case: any;
+  id: string = '';
+  @Input()
+  kzn: string = '';
 
 }

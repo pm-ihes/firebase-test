@@ -17,13 +17,10 @@ export class CaseViewComponent implements OnInit{
   constructor(private caseService: CaseService) {}
 
   ngOnInit(): void {
-
-    this.getUsers();
-
-
+    this.getCases();
   }
 
-  async getUsers() {
+  async getCases() {
     this.cases = await this.caseService.getCases();
     console.log(this.cases);
     this.loaded = true;
