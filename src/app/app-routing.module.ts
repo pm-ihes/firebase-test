@@ -4,6 +4,9 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
+import { authGuard } from './shared/guard/auth.guard';
+import { outerauthGuard } from './shared/guard/outerauth.guard';
 
 const routes: Routes = [
   {
@@ -13,19 +16,27 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
+    component: LoginComponent,
+    canActivate: [outerauthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [outerauthGuard]
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard]
+  },
+
   {
     path: 'verify-email',
     component: VerifyEmailComponent
+  },
+  {
+    path: 'loading',
+    component: LoadingIndicatorComponent
   }
 
 ];

@@ -3,10 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'ngx-toastr/toastr';
 
 :root{
     --primary-color: #d7d900;
     --secondary-color: #002c5a;
+    --light-primary: #efed9b;
+    --orange: #f7a600;
+    --dark-grey: #70849e;
+    --light-grey: #d5dde3;
+    --dark-purple: #7a2182;
+    --light-purple: #a71680;
     --white: white;
     --red: red;
 }

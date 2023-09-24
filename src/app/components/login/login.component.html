@@ -3,12 +3,17 @@
 
     <div class="flex justify-center items-center
                 sm:w-[40%]">
-        <app-header-logo></app-header-logo>
+      <div class="block">
+        <app-outter-header></app-outter-header>
+      
+        <app-footer-information *ngIf="isWideEnough"></app-footer-information>
+      </div>
     </div>
 
-    <div class="pt-10
-            sm:w-[40%] sm:px-10">
-      <form class="min-w-[150px] max-w-[500px] w-full m-auto h-full p-4 block" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="sm:pt-10 sm:w-[40%] sm:px-10">
+      <form class="min-w-[150px] max-w-[500px] w-full m-auto h-full block py-10
+                  sm:p-4" 
+            [formGroup]="loginForm" (ngSubmit)="login()">
 
         <div class="flex justify-center">
           <mat-form-field class="example-full-width w-80 m-auto mb-3">
@@ -41,18 +46,18 @@
         <div class="block">
           <div class="flex justify-center">
             <button type="submit" [attr.disabled]="loginForm.valid ? null : true"
-            class="bg-[var(--secondary-color)] text-white p-2 w-80 m-auto ease-in duration-300 hover:valid:tracking-[.25em] disabled:bg-slate-500">Anmelden</button>
+            class="bg-[var(--secondary-color)] text-white p-2 w-80 m-auto ease-in duration-300 hover:valid:bg-indigo-800 disabled:bg-slate-500">Anmelden</button>
           </div>
           <div class="flex justify-center my-4 hover:underline">
-            <a href="">Passwort vergessen?</a>
+            <a href="" class="text-[var(--dark-purple)]">Passwort vergessen?</a>
           </div>
           <div class="flex justify-center mb-4 hover:underline">
-            <a routerLink="../register">Noch keinen Zugang? Registrieren Sie sich hier!</a>
+            <a routerLink="../register" class="text-[var(--dark-purple)]">Registrieren Sie sich hier!</a>
           </div>
         </div>
-
-
       </form>
+
+      <app-footer-information *ngIf="!isWideEnough"></app-footer-information>
     </div>
 
 

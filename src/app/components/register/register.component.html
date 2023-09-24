@@ -3,13 +3,18 @@
     
     <div class="flex justify-center items-center
                 sm:w-[40%]">
-        <app-header-logo></app-header-logo>
+        <div class="block">
+            <app-outter-header></app-outter-header>
+
+            <app-footer-information *ngIf="isWideEnough"></app-footer-information>
+        </div>
     </div>
     
-    <div class="pt-10 
-                sm:w-[40%] sm:px-10">
+    <div class="sm:pt-10 sm:pb-10 sm:w-[40%] sm:px-10">
         <!--<p class="text-2xl font-medium py-4">Registrierung</p>-->
-        <form class="min-w-[150px] max-w-[500px] w-full m-auto h-full block" [formGroup]="registerForm" (ngSubmit)="register()">
+        <form class="min-w-[200px] max-w-[500px] w-full m-auto h-full block pb-10
+                    sm:p-4" 
+                [formGroup]="registerForm" (ngSubmit)="register()">
 
             <div class="flex justify-center">
                 <mat-form-field class="example-full-width w-80 m-auto mb-3">
@@ -39,7 +44,7 @@
                     <mat-label class="">Email</mat-label>
                     <input class="text-[var(--secondary-color)]" type="text" matInput formControlName="email" [(ngModel)]="email">
                     <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
-                        Nachname wird benötigt!
+                        Email wird benötigt!
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -53,7 +58,10 @@
                         <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-                    Bitte geben Sie ein Password ein!
+                        Bitte geben Sie ein Password ein!
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
+                        Passwort muss mindestens 6 Zeichen haben!
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -78,13 +86,16 @@
             <div class="block">
                 <div class="flex justify-center">
                     <button type="submit" [attr.disabled]="registerForm.valid ? null : true"
-                    class="bg-[var(--secondary-color)] text-white p-2 w-80 m-auto ease-in duration-300 hover:valid:tracking-[.25em] disabled:bg-slate-500">Registrieren</button>
+                    class="bg-[var(--secondary-color)] text-white p-2 w-80 m-auto ease-in duration-300 hover:valid:bg-indigo-800 disabled:bg-slate-500">Registrieren</button>
                 </div>
                 <div class="flex justify-center my-4 hover:underline">
-                    <a routerLink="../login">Zurück zum Login</a>
+                    <a routerLink="../login" class="text-[var(--dark-purple)]">Zurück zum Login</a>
                 </div>
             </div>
         </form>
+
+        <app-footer-information *ngIf="!isWideEnough"></app-footer-information>
+
     </div>
 
 

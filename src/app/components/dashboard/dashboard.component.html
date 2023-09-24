@@ -1,4 +1,30 @@
-<p>dashboard works!</p>
 
+<app-inner-header></app-inner-header>
 
-<button (click)=logout()>Logout</button>
+<div class="max-w-md my-0 mx-auto text-center pb-6">
+    <p>Angemeldet als <span class="text-[var(--light-purple)]">{{ email }}</span>.</p>
+</div>
+
+<div class="max-w-xl my-3 mx-auto">
+
+    <mat-divider></mat-divider>
+    <app-dashboard-element title="Neuen Fall anlegen" iconName="edit" routeL="../test"></app-dashboard-element>
+    <mat-divider></mat-divider>
+    <app-dashboard-element title="Fälle ansehen" iconName="format_list_bulleted"></app-dashboard-element>
+    <mat-divider></mat-divider>
+    <app-dashboard-element title="[...]" iconName="question_mark"></app-dashboard-element>
+    <mat-divider></mat-divider>
+    <app-dashboard-element title="[...]" iconName="question_mark"></app-dashboard-element>
+    <mat-divider></mat-divider>
+</div>
+
+<div class="max-w-xs m-auto flex justify-center py-4">
+    <button (click)=logout() class="bg-[var(--secondary-color)] hover:bg-indigo-800">
+        <div class="flex items-center justify-center px-3 py-1 w-60">
+            <p class="text-xl text-white px-2 uppercase">Logout</p>
+            <span class="material-symbols-outlined text-2xl px-2 text-white">
+                logout
+            </span>
+        </div>   
+    </button>
+</div>

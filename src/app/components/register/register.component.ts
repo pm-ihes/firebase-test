@@ -1,9 +1,9 @@
 import { group } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -33,6 +33,8 @@ export class RegisterComponent implements OnInit{
   hide1 = true;
   hide2 = true;
 
+  isWideEnough = false;
+
   constructor (private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {}
 
   ngOnInit () {
@@ -42,26 +44,36 @@ export class RegisterComponent implements OnInit{
     this.password = '';
     this.confirmPassword = '';
 
+    this.isWideEnough = !!(this.getScreenWidth() > 640);
+
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]},
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]},
       { validator: this.checkPasswords 
     });
   }
   
-  register () {
-    this.auth.register(this.firstname, this.lastname, this.email, this.password);
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.isWideEnough = !!(this.getScreenWidth() > 640);
+  }
 
-    this.router.navigate(['login']);
+  register () {
+    this.router.navigate(['loading']);
+    this.auth.register(this.firstname, this.lastname, this.email, this.password);
   }
 
   checkPasswords (group: FormGroup) {
     let pass = group.controls['password']?.value;
     let confirmPass = group.controls['confirmPassword']?.value;
     return pass === confirmPass ? null : { notSame: true }
+  }
+
+  getScreenWidth(){
+    return window.innerWidth;
   }
 
 }

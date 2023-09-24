@@ -20,10 +20,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { NgIf } from '@angular/common';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { HeaderLogoComponent } from './components/header-logo/header-logo.component';
+import { OutterHeaderComponent } from './components/outter-header/outter-header.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-
-
+import { FooterInformationComponent } from './components/footer-information/footer-information.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
+import { ProgressSpinnerMode, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {ThemePalette} from '@angular/material/core';
+import { InnerHeaderComponent } from './components/inner-header/inner-header.component';
+import { DashboardElementComponent } from './components/dashboard/dashboard-element/dashboard-element.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,8 +37,12 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    HeaderLogoComponent,
-    VerifyEmailComponent
+    OutterHeaderComponent,
+    VerifyEmailComponent,
+    FooterInformationComponent,
+    LoadingIndicatorComponent,
+    InnerHeaderComponent,
+    DashboardElementComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +58,10 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
-    NgIf
+    NgIf,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [
