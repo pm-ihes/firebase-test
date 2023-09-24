@@ -1,5 +1,6 @@
 import { Injectable, NgZone, inject } from '@angular/core';
-import { Auth, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged, user } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire/compat';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
@@ -14,6 +15,8 @@ export class AuthService {
   UserData!: any;
   constructor(private fireauth: AngularFireAuth, private db: AngularFirestore, private router: Router, private auth: Auth, private toastr: ToastrService) { 
     
+
+
     onAuthStateChanged(this.auth,(user: any)=>{
       if(user){
         this.UserData = user;
@@ -40,6 +43,8 @@ export class AuthService {
 
   //login method
   login(email: string, password: string) {
+    //this.fireauth.setPersistence(this.firebase.auth.Auth.Persistence.SESSION)
+
     this.fireauth.signInWithEmailAndPassword(email, password).then( cred => {
       
 
