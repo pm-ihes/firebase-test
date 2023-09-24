@@ -14,7 +14,13 @@
 <div class="max-w-xl m-auto">
     <mat-divider></mat-divider>
 
-    <app-case-view-element *ngFor="let case for cases"></app-case-view-element>
+    <div *ngIf="!loaded" class="py-40">
+        <app-loading-indicator></app-loading-indicator>
+    </div>
+    <div *ngIf="loaded">
+        <app-case-view-element *ngFor="let case of cases"></app-case-view-element>
+    </div>
+    
 
     <mat-divider></mat-divider>
 </div>

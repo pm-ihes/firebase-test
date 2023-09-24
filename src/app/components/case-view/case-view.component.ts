@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Case } from 'src/app/model/interfaces/case';
 import { CaseService } from 'src/app/shared/services/case/case.service';
@@ -10,13 +10,23 @@ import { CaseService } from 'src/app/shared/services/case/case.service';
 })
 export class CaseViewComponent implements OnInit{
 
-  cases!: any;
+  cases: Case[] = [];
+
+  loaded = false;
 
   constructor(private caseService: CaseService) {}
 
   ngOnInit(): void {
-    this.cases = this.caseService.getCases();
-    console.log(this.cases[0].data);
+
+    this.getUsers();
+
+
+  }
+
+  async getUsers() {
+    this.cases = await this.caseService.getCases();
+    console.log(this.cases);
+    this.loaded = true;
   }
 
 }

@@ -30,14 +30,17 @@ export class CaseService {
       this.toastr.success('Der eingetragene Fall wurde erfolgreich an uns vermittelt', 'Erfolgreich angelegt!', { positionClass: 'toast-bottom-right' });
     }, err => {
       this.toastr.error('Probieren Sie es nocheinmal oder wenden Sie sich an unseren Support', 'Fehler beim Speichern!', { positionClass: 'toast-bottom-right'});
-      this.router.navigate(['case_view']);
+      this.router.navigate(['../case_view']);
     });
   }
 
   getCases () {
-    this.case.subscribe(data => {
+    return new Promise<any>((resolve) => {
+      this.db.collection('makler_case').valueChanges({ idField: 'id'}).subscribe(users => resolve(users));
+    })
+    /*this.case.subscribe(data => {
       this.cases.push(data);
     });
-    return this.cases;
+    return this.cases;*/
   }
 }
